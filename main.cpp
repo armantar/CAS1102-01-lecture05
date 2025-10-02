@@ -7,7 +7,26 @@
 void decode_steganography(int image_data[], int data_size, std::string key) {
 
     int currentIndex = 1000;
+    int keyIndex = 0;
 
+    while (true) {
+        char keyChar = key[keyIndex % key.size()];
+        int jump = (int)keyChar;
+        currentIndex += jump;
+        if (currentIndex < 0 || currentIndex >= data_size) {
+            break;
+        }
+
+        int val = image_data[currentIndex];
+
+        if (val == 0) {
+            break;
+        }
+
+        std::cout << (char)val;
+
+        keyIndex++;
+    }
     // TODO: Implement the solve_steganography function.
     /**
      * Implement a loop to decrypt the message, starting from index 1000.
@@ -27,7 +46,7 @@ void decode_steganography(int image_data[], int data_size, std::string key) {
      *   Remember to always stay within the array bounds!
      * - If the value is 0, stop the loop. Otherwise, cast the value to a `char` and print it.
      */
-
+    
 }
 
 
